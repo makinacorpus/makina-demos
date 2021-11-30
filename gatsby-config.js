@@ -2,7 +2,19 @@ require('dotenv').config();
 
 module.exports = {
   plugins: [
+    'gatsby-plugin-image',
     'gatsby-theme-material-ui',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-mdx',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/pages`,
+        name: 'pages',
+      },
+    },
     {
       resolve: 'gatsby-source-baserow',
       options: {
