@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { Grid } from '@mui/material';
 import ItemCard from './ItemCard';
 
-const Items = () => {
+const Items = props => {
   const { wrapper: { items = [] } = {} } = useStaticQuery(graphql`
     query MyQuery {
       wrapper: allItems {
@@ -42,7 +42,7 @@ const Items = () => {
   );
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} {...props}>
       {richItems.map(item => (
         <Grid item key={item.id} lg={3} md={4} xs={6}>
           <ItemCard {...item} />

@@ -20,7 +20,7 @@ const ItemCard = ({
   img: [img] = [],
 }) => (
   <Card sx={{ maxWidth: 345 }}>
-    <CardActionArea component={Link} href={lien}>
+    <CardActionArea component={Link} href={lien} target="_blank">
       <CardMedia
         component="img"
         height="140"
@@ -28,7 +28,7 @@ const ItemCard = ({
         alt=""
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
+        <Typography gutterBottom variant="h4" component="h2">
           {titre}
         </Typography>
 
@@ -42,7 +42,7 @@ const ItemCard = ({
       </CardContent>
     </CardActionArea>
     <CardActions>
-      <Button size="small" href={lien}>Voir le site</Button>
+      <Button size="small" href={lien} target="_blank">Voir le site</Button>
     </CardActions>
   </Card>
 );
