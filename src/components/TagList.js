@@ -12,6 +12,8 @@ import {
   ListItemText,
 } from '@mui/material';
 
+import { Cancel as CancelIcon } from '@mui/icons-material';
+
 import useTags from '../hooks/useTags';
 
 const dropdownMenuProps = {
@@ -40,11 +42,21 @@ const TagList = props => {
         )}
 
         {selected.map(value => (
-          <Chip key={value} label={allTags[value]?.label || value} size="small" sx={{ mr: 0.5 }} />
+          <Chip
+            key={value}
+            label={allTags[value]?.label || value}
+            size="small"
+            sx={{ mr: 0.5 }}
+            clickable
+            onDelete={() => dispatch({ type: 'TAG_TOGGLE', value })}
+            deleteIcon={(
+              <CancelIcon onMouseDown={event => event.stopPropagation()} />
+            )}
+          />
         ))}
       </Box>
     ),
-    [allTags],
+    [allTags, dispatch],
   );
 
   return (
@@ -63,7 +75,7 @@ const TagList = props => {
           MenuProps={dropdownMenuProps}
         >
           {Object.entries(allTags).map(([key, properties]) => (
-            <MenuItem key={key} value={key} dense disabled={!properties?.items.length}>
+            <MenuItem key={key} value={key} dense>
               <Checkbox checked={tags.includes(key)} size="small" />
               <ListItemText primary={properties.label} />
             </MenuItem>

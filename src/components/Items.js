@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Grid } from '@mui/material';
 import ItemCard from './ItemCard';
@@ -17,6 +18,8 @@ const Items = props => {
       }
     }
   `);
+
+  const tags = useSelector(({ tags: t = [] }) => t);
 
   const richItems = React.useMemo(
     () => items.map(({ columnsRaw, columns, ...rest }) => {
@@ -37,8 +40,9 @@ const Items = props => {
       const { 1: aIndex } = a.match(/-row-(.*)$/) || [];
       const { 1: bIndex } = b.match(/-row-(.*)$/) || [];
       return Number(aIndex) - Number(bIndex);
-    }).filter(({ brouillon }) => !brouillon),
-    [items],
+    }).filter(({ brouillon }) => !brouillon)
+      .filter(item => !tags.length || item.tags.some(tag => tags.includes(tag.value))),
+    [items, tags],
   );
 
   return (
