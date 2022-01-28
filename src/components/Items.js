@@ -33,6 +33,10 @@ const Items = () => {
         ...columns,
         ...rest,
       };
+    }).sort(({ id: a = '' }, { id: b = '' }) => {
+      const { 1: aIndex } = a.match(/-row-(.*)$/) || [];
+      const { 1: bIndex } = b.match(/-row-(.*)$/) || [];
+      return Number(aIndex) - Number(bIndex);
     }),
     [items],
   );

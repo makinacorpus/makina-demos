@@ -2,10 +2,12 @@ import React from 'react';
 import {
   Button,
   Card,
+  CardActionArea,
   CardActions,
   CardContent,
   CardMedia,
   Typography,
+  Link,
 } from '@mui/material';
 
 import ItemTags from './ItemTags';
@@ -14,30 +16,33 @@ const ItemCard = ({
   titre,
   description,
   tags,
+  lien,
+  img: [img] = [],
 }) => (
   <Card sx={{ maxWidth: 345 }}>
-    <CardMedia
-      component="img"
-      height="140"
-      image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-      alt=""
-    />
-    <CardContent>
-      <Typography gutterBottom variant="h5" component="div">
-        {titre}
-      </Typography>
-
-      {description && (
-        <Typography variant="body2" color="text.secondary">
-          {description}
+    <CardActionArea component={Link} href={lien}>
+      <CardMedia
+        component="img"
+        height="140"
+        image={img?.thumbnails.card_cover.url || '/makina.png'}
+        alt=""
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="h2">
+          {titre}
         </Typography>
-      )}
 
-      <ItemTags tags={tags} />
-    </CardContent>
+        {description && (
+          <Typography variant="body2" color="text.secondary">
+            {description}
+          </Typography>
+        )}
 
+        <ItemTags tags={tags} />
+      </CardContent>
+    </CardActionArea>
     <CardActions>
-      <Button size="small">Voir le site</Button>
+      <Button size="small" href={lien}>Voir le site</Button>
     </CardActions>
   </Card>
 );
