@@ -31,5 +31,11 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: 'gatsby-plugin-react-redux',
+      options: {
+        pathToCreateStoreModule: './src/createStore.js',
+      },
+    },
   ],
 };
