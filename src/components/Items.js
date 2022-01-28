@@ -37,7 +37,7 @@ const Items = () => {
       const { 1: aIndex } = a.match(/-row-(.*)$/) || [];
       const { 1: bIndex } = b.match(/-row-(.*)$/) || [];
       return Number(aIndex) - Number(bIndex);
-    }),
+    }).filter(({ brouillon }) => !brouillon),
     [items],
   );
 
