@@ -11,6 +11,7 @@ const useTags = () => {
             description
             label
             tag
+            items { id }
           }
         }
       }
