@@ -7,8 +7,9 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "lint": "eslint .",
-    "start": "gatsby develop",
+    "start": "ENABLE_GATSBY_REFRESH_ENDPOINT=1 gatsby develop",
     "serve": "gatsby serve",
+    "refresh": "curl -X POST http://localhost:8000/__refresh",
     "clean": "gatsby clean"
   },
   "dependencies": {
