@@ -41,6 +41,7 @@ const Items = props => {
       const { 1: bIndex } = b.match(/-row-(.*)$/) || [];
       return Number(aIndex) - Number(bIndex);
     }).filter(({ brouillon }) => !brouillon)
+      .filter(item => item.titre || item.lien)
       .filter(item => !tags.length || item.tags.some(tag => tags.includes(tag.value))),
     [items, tags],
   );
